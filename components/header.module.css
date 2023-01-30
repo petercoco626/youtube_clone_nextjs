@@ -1,0 +1,17 @@
+.header {
+  width: 100%;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+}
+
+.search {
+  background-color: var(--color-input);
+  color: var(--color-input-text);
+  width: 3rem;
+}
+
+.search-button {
+  background-color: var(--color-input-button);
+}

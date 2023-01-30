@@ -1,0 +1,10 @@
+:root {
+  --color-bg: #000000;
+  --color-input: #000000;
+  --color-input-text: #ffffff;
+  --color-input-button: #898989;
+}
+
+html {
+  background-color: var(--color-bg);
+}

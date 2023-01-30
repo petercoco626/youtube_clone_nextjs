@@ -1,6 +1,7 @@
 import { useSearchDispatch, useSearchState } from '@/context/searchContext';
 import Image from 'next/image';
 import React, { useCallback, useState } from 'react';
+import styles from './header.module.css';
 
 export default function Header() {
   const search = useSearchState();
@@ -23,11 +24,16 @@ export default function Header() {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className={styles.header}>
       <Image></Image>
       <form onSubmit={onSumbit}>
-        <input placeholder="Search..." value={search} onChange={handleSearch}></input>
-        <div></div>
+        <input
+          className={styles.search}
+          placeholder="Search..."
+          value={search}
+          onChange={handleSearch}
+        ></input>
+        <div className={styles['search-button']}></div>
       </form>
     </div>
   );
