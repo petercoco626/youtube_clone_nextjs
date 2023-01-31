@@ -1,10 +1,15 @@
 :root {
-  --color-bg: #000000;
+  --color-bg: #181818;
   --color-input: #000000;
-  --color-input-text: #ffffff;
-  --color-input-button: #898989;
+  --color-white: #ffffff;
+  --color-input-gray: #898989;
 }
 
 html {
   background-color: var(--color-bg);
+  font-size: 62.5%;
+  margin: auto;
+}
+
+body {
 }

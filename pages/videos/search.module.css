@@ -1,0 +1,25 @@
+.video-list-wrap {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.4rem;
+}
+
+.video {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.video > div {
+  color: var(--color-white);
+}
+
+.video-title {
+  font-size: 1.5rem;
+}
+.video-channel {
+  font-size: 1rem;
+}
+.video-upload-time {
+  font-size: 1rem;
+}
