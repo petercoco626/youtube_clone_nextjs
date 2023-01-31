@@ -4,10 +4,12 @@ import { useQuery } from 'react-query';
 import axios from 'axios';
 import styles from './home.module.css';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 const GET_YOUTUBE_VIDEO_LIST = '';
 
 export default function Home() {
+  const router = useRouter();
   const [popularVideoList, setPopularVideoList] = useState<any[]>([]);
 
   const getVideoList = useCallback(async () => {
@@ -17,7 +19,12 @@ export default function Home() {
       setPopularVideoList(res.data.items);
     } catch (e) {}
   }, []);
-
+  const onClickVideo = useCallback(
+    (videoId: string) => {
+      router.push(`/videos/watch/${videoId}`);
+    },
+    [router]
+  );
   const { data: videoList, isLoading, isError } = useQuery('popular-video', getVideoList);
 
   return (
@@ -31,7 +38,7 @@ export default function Home() {
       <div className={styles['video-list-wrap']}>
         {popularVideoList &&
           popularVideoList.map((video: any) => (
-            <div key={video.id} className={styles.video}>
+            <div key={video.id} className={styles.video} onClick={() => onClickVideo(video.id)}>
               <Image
                 width={'100px'}
                 height={'100px'}

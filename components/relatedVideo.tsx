@@ -1,22 +1,20 @@
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useCallback, useState } from 'react';
-import { useQuery } from 'react-query';
 import axios from 'axios';
+import { useQuery } from 'react-query';
 import Head from 'next/head';
-import styles from './search.module.css';
 import Image from 'next/image';
+import styles from './relatedVideo.module.css';
 
-const URL_SEARCHED_VIDEO_LIST = '';
-
-const Serarch: NextPage = () => {
+const RelatedVideo: NextPage = () => {
   const router = useRouter();
-  const [searchedVideoList, setSearchedVideoList] = useState([]);
-  const getSearchedVideoList = useCallback(async () => {
+  const [relatedVideoList, setRelatedVideoList] = useState([]);
+  const getRelatedVideoList = useCallback(async () => {
     try {
-      const res = await axios.get(`/data/searched-video.json`);
+      const res = await axios.get(`/data/related-video.json`);
       console.log(res);
-      setSearchedVideoList(res.data.items);
+      setRelatedVideoList(res.data.items);
     } catch (e) {}
   }, []);
   const onClickVideo = useCallback(
@@ -25,8 +23,7 @@ const Serarch: NextPage = () => {
     },
     [router]
   );
-  const { data, isLoading, isError } = useQuery('searched-video', getSearchedVideoList);
-
+  const { data, isLoading, isError } = useQuery('related-video', getRelatedVideoList);
   return (
     <>
       <Head>
@@ -36,8 +33,8 @@ const Serarch: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={styles['video-list-wrap']}>
-        {searchedVideoList &&
-          searchedVideoList.map((video: any) => (
+        {relatedVideoList &&
+          relatedVideoList.map((video: any) => (
             <div
               key={video.id.videoId}
               className={styles.video}
@@ -50,9 +47,11 @@ const Serarch: NextPage = () => {
                 alt=""
                 layout="fixed"
               />
-              <div className={styles['video-title']}>{video.snippet.title}</div>
-              <div className={styles['video-channel']}>{video.snippet.channelTitle}</div>
-              <div className={styles['video-upload-time']}>{video.snippet.publishedAt}</div>
+              <div className={styles['video-info']}>
+                <div className={styles['video-title']}>{video.snippet.title}</div>
+                <div className={styles['video-channel']}>{video.snippet.channelTitle}</div>
+                <div className={styles['video-upload-time']}>{video.snippet.publishedAt}</div>
+              </div>
             </div>
           ))}
       </div>
@@ -60,4 +59,4 @@ const Serarch: NextPage = () => {
   );
 };
 
-export default Serarch;
+export default RelatedVideo;

@@ -1,0 +1,86 @@
+{
+  "kind": "youtube#videoListResponse",
+  "etag": "lf2XhY7iKpHKht2hj0zANjjpJII",
+  "items": [
+    {
+      "kind": "youtube#video",
+      "etag": "VUgXMoo5v3zVbqfT5xc4OKer5qQ",
+      "id": "uVWUshCqr3c",
+      "snippet": {
+        "publishedAt": "2023-01-29T09:19:04Z",
+        "channelId": "UCoe-0EVDJnjlSoPK8ygcGwQ",
+        "title": "어제보다 오늘 더 웃깁니다.. (Feat. 차태현, 장혁, 홍경민, 홍경인)",
+        "description": "멈추지 않는 오랜 찐친들의 토크, 그리고 대한민국 운동의 밝은 미래를 확인하는 시간이었습니다.\n어릴 때부터 함께 한 격이 없는 친구들이다 보니 서로에게 조금 과격한 모습이 보이더라도 그 부분을 더욱 재밌게 봐주시길 바랍니다~\n\n영상 보시고 오랜 친구들 생각 한 번씩 나시면 좋겠네요! \n남은 주말 푹 쉬십시요! \n\n#김종국 #짐종국 #용띠클럽",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/uVWUshCqr3c/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/uVWUshCqr3c/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/uVWUshCqr3c/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/uVWUshCqr3c/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/uVWUshCqr3c/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "김종국 GYM JONG KOOK",
+        "tags": [
+          "김종국",
+          "짐종국",
+          "런닝맨",
+          "미우새",
+          "헬스",
+          "운동",
+          "유재석",
+          "하하",
+          "이광수",
+          "송지효",
+          "스포츠",
+          "김동현",
+          "UFC"
+        ],
+        "categoryId": "17",
+        "liveBroadcastContent": "none",
+        "localized": {
+          "title": "어제보다 오늘 더 웃깁니다.. (Feat. 차태현, 장혁, 홍경민, 홍경인)",
+          "description": "멈추지 않는 오랜 찐친들의 토크, 그리고 대한민국 운동의 밝은 미래를 확인하는 시간이었습니다.\n어릴 때부터 함께 한 격이 없는 친구들이다 보니 서로에게 조금 과격한 모습이 보이더라도 그 부분을 더욱 재밌게 봐주시길 바랍니다~\n\n영상 보시고 오랜 친구들 생각 한 번씩 나시면 좋겠네요! \n남은 주말 푹 쉬십시요! \n\n#김종국 #짐종국 #용띠클럽"
+        },
+        "defaultAudioLanguage": "ko"
+      },
+      "contentDetails": {
+        "duration": "PT17M48S",
+        "dimension": "2d",
+        "definition": "hd",
+        "caption": "false",
+        "licensedContent": true,
+        "contentRating": {},
+        "projection": "rectangular"
+      },
+      "statistics": {
+        "viewCount": "2102241",
+        "likeCount": "28047",
+        "favoriteCount": "0",
+        "commentCount": "1752"
+      }
+    }
+  ],
+  "pageInfo": {
+    "totalResults": 1,
+    "resultsPerPage": 1
+  }
+}
