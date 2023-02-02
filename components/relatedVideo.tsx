@@ -1,29 +1,24 @@
-import type { NextPage } from 'next';
-import { useRouter } from 'next/router';
-import { useCallback, useState } from 'react';
-import axios from 'axios';
-import { useQuery } from 'react-query';
-import Head from 'next/head';
-import Image from 'next/image';
-import styles from './relatedVideo.module.css';
+import type { NextPage } from "next";
+import { useRouter } from "next/router";
+import { useCallback, useState } from "react";
+import axios from "axios";
+import { useQuery } from "react-query";
+import Head from "next/head";
+import Image from "next/image";
+import styles from "./relatedVideo.module.css";
+import { getRelatedVideoInfo } from "@/apis/youtube";
 
 const RelatedVideo: NextPage = () => {
   const router = useRouter();
-  const [relatedVideoList, setRelatedVideoList] = useState([]);
-  const getRelatedVideoList = useCallback(async () => {
-    try {
-      const res = await axios.get(`/data/related-video.json`);
-      console.log(res);
-      setRelatedVideoList(res.data.items);
-    } catch (e) {}
-  }, []);
   const onClickVideo = useCallback(
     (videoId: string) => {
       router.push(`/videos/watch/${videoId}`);
     },
     [router]
   );
-  const { data, isLoading, isError } = useQuery('related-video', getRelatedVideoList);
+  const { data, isLoading, isError } = useQuery("related-video", () =>
+    getRelatedVideoInfo(String(router.query.id))
+  );
   return (
     <>
       <Head>
@@ -32,28 +27,31 @@ const RelatedVideo: NextPage = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className={styles['video-list-wrap']}>
-        {relatedVideoList &&
-          relatedVideoList.map((video: any) => (
-            <div
-              key={video.id.videoId}
-              className={styles.video}
-              onClick={() => onClickVideo(video.id.videoId)}
-            >
-              <Image
-                width={'100px'}
-                height={'100px'}
-                src={video.snippet.thumbnails.medium.url}
-                alt=""
-                layout="fixed"
-              />
-              <div className={styles['video-info']}>
-                <div className={styles['video-title']}>{video.snippet.title}</div>
-                <div className={styles['video-channel']}>{video.snippet.channelTitle}</div>
-                <div className={styles['video-upload-time']}>{video.snippet.publishedAt}</div>
+      <div className={styles["video-list-wrap"]}>
+        {data?.data.items.map((video: any) => (
+          <div
+            key={video.id.videoId}
+            className={styles.video}
+            onClick={() => onClickVideo(video.id.videoId)}
+          >
+            <Image
+              width={"100px"}
+              height={"100px"}
+              src={video.snippet.thumbnails.medium.url}
+              alt=""
+              layout="fixed"
+            />
+            <div className={styles["video-info"]}>
+              <div className={styles["video-title"]}>{video.snippet.title}</div>
+              <div className={styles["video-channel"]}>
+                {video.snippet.channelTitle}
+              </div>
+              <div className={styles["video-upload-time"]}>
+                {video.snippet.publishedAt}
               </div>
             </div>
-          ))}
+          </div>
+        ))}
       </div>
     </>
   );

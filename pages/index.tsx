@@ -1,31 +1,24 @@
-import Head from 'next/head';
-import { useCallback, useEffect, useState } from 'react';
-import { useQuery } from 'react-query';
-import axios from 'axios';
-import styles from './home.module.css';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-
-const GET_YOUTUBE_VIDEO_LIST = '';
+import Head from "next/head";
+import { useCallback, useEffect, useState } from "react";
+import { useQuery } from "react-query";
+import axios from "axios";
+import styles from "./home.module.css";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { getPopularVideoList } from "@/apis/youtube";
 
 export default function Home() {
   const router = useRouter();
-  const [popularVideoList, setPopularVideoList] = useState<any[]>([]);
-
-  const getVideoList = useCallback(async () => {
-    try {
-      const res = await axios.get(`data/popular-video.json`);
-      console.log(res);
-      setPopularVideoList(res.data.items);
-    } catch (e) {}
-  }, []);
   const onClickVideo = useCallback(
     (videoId: string) => {
       router.push(`/videos/watch/${videoId}`);
     },
     [router]
   );
-  const { data: videoList, isLoading, isError } = useQuery('popular-video', getVideoList);
+  const { data, isLoading, isError } = useQuery(
+    "popular-video-list",
+    getPopularVideoList
+  );
 
   return (
     <>
@@ -35,23 +28,30 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className={styles['video-list-wrap']}>
-        {popularVideoList &&
-          popularVideoList.map((video: any) => (
-            <div key={video.id} className={styles.video} onClick={() => onClickVideo(video.id)}>
-              <Image
-                width={'100px'}
-                height={'100px'}
-                src={video.snippet.thumbnails.medium.url}
-                alt=""
-                className={styles['video-thumbnail']}
-                layout="fixed"
-              />
-              <div className={styles['video-title']}>{video.snippet.title}</div>
-              <div className={styles['video-channel']}>{video.snippet.channelTitle}</div>
-              <div className={styles['video-upload-time']}>{video.snippet.publishedAt}</div>
+      <div className={styles["video-list-wrap"]}>
+        {data?.data.items.map((video: any) => (
+          <div
+            key={video.id}
+            className={styles.video}
+            onClick={() => onClickVideo(video.id)}
+          >
+            <Image
+              width={"100px"}
+              height={"100px"}
+              src={video.snippet.thumbnails.medium.url}
+              alt=""
+              className={styles["video-thumbnail"]}
+              layout="fixed"
+            />
+            <div className={styles["video-title"]}>{video.snippet.title}</div>
+            <div className={styles["video-channel"]}>
+              {video.snippet.channelTitle}
             </div>
-          ))}
+            <div className={styles["video-upload-time"]}>
+              {video.snippet.publishedAt}
+            </div>
+          </div>
+        ))}
       </div>
     </>
   );
