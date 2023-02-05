@@ -1,0 +1,12 @@
+.image-wrap {
+}
+
+.image-wrap > span {
+  position: unset !important;
+}
+
+.image-wrap > span > img {
+  object-fit: contain !important;
+  position: relative !important;
+  height: auto !important;
+}

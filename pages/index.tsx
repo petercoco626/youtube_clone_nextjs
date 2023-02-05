@@ -6,6 +6,7 @@ import styles from "./home.module.css";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { getPopularVideoList } from "@/apis/youtube";
+import AutoHeightImage from "@/components/autoHeightimage";
 
 export default function Home() {
   const router = useRouter();
@@ -35,14 +36,7 @@ export default function Home() {
             className={styles.video}
             onClick={() => onClickVideo(video.id)}
           >
-            <Image
-              width={"100px"}
-              height={"100px"}
-              src={video.snippet.thumbnails.medium.url}
-              alt=""
-              className={styles["video-thumbnail"]}
-              layout="fixed"
-            />
+            <AutoHeightImage imageUrl={video.snippet.thumbnails.medium.url} />
             <div className={styles["video-title"]}>{video.snippet.title}</div>
             <div className={styles["video-channel"]}>
               {video.snippet.channelTitle}
