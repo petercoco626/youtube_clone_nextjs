@@ -8,8 +8,14 @@
 html {
   background-color: var(--color-bg);
   font-size: 62.5%;
-  margin: auto;
 }
 
 body {
+  width: 100vw;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+button {
+  border: 0;
 }

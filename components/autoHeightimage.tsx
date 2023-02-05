@@ -1,8 +1,8 @@
 import styles from "./autoHeightImage.module.css";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 
 interface AutoHeightImageProps {
-  imageUrl: string;
+  imageUrl: string | StaticImageData;
 }
 
 export default function AutoHeightImage({ imageUrl }: AutoHeightImageProps) {
