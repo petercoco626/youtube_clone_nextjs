@@ -5,6 +5,7 @@ import styles from "./selectedVideo.module.css";
 import axios from "axios";
 import { useQuery } from "react-query";
 import { getVideoInfo } from "@/apis/youtube";
+import AutoHeightVideo from "./autoHeightVideo";
 
 const SelectedVideo: NextPage = () => {
   const { query } = useRouter();
@@ -15,14 +16,9 @@ const SelectedVideo: NextPage = () => {
 
   return (
     <div className={styles["selectedVideo"]}>
-      <iframe
-        id="ytplayer"
-        // type="text/html"
-        width="640"
-        height="360"
-        src={`https://www.youtube.com/embed/${data?.data.items[0]?.id}?autoplay=1&origin=http://example.com`}
-        frameBorder="0"
-      ></iframe>
+      <AutoHeightVideo
+        videoUrl={`https://www.youtube.com/embed/${data?.data.items[0]?.id}?autoplay=1&origin=http://example.com`}
+      />
       <div className={styles["video-info"]}>
         <div className={styles["video-title"]}>
           {data?.data.items[0]?.snippet?.title}
